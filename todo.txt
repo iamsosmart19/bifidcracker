@@ -1,3 +1,0 @@
-TODO:
-	* Add output to file
-	* Verbosity control

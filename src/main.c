@@ -16,8 +16,8 @@ int main(int argc, char* argv[]) {
 	ciphertext = fopen(argv[1], "r");
 	char check;
 	while(1) {
-		check == fgetc(ciphertext);
-		if(check == EOF || check == '\0') {
+		check = fgetc(ciphertext);
+		if(check == EOF || check == 0) {
 			break;
 		}
 		if( check < 65 || check > 90 || check == 'J') {
