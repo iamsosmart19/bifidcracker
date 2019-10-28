@@ -21,7 +21,12 @@ int main(int argc, char* argv[]) {
 			break;
 		}
 		if( check < 65 || check > 90 || check == 'J') {
-			fprintf(stderr, "Error: Invalid character %c: check that all characters are lowercase, there are no spaces, and no 'J's\n", check);
+			if(check != '\n') {
+				fprintf(stderr, "Error: Invalid character %c: check that all characters are lowercase, there are no spaces, and no 'J's\n", check);
+			}
+			else {
+				fprintf(stderr, "Error: Invalid character \\n: check that all characters are lowercase, there are no spaces, and no 'J's\n");
+			}
 			return 1;
 		}	   
 	}
