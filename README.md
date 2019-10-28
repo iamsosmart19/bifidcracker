@@ -8,5 +8,4 @@ Run *make* to build the binary, then run with ./bin/bifid. Put the file you wish
 Note: the file must have only upper case characters, no newlines, and no 'J's.<br>
 
 TODO:<br>
-
-	* Automatically add spaces
+ * Automatically add spaces
