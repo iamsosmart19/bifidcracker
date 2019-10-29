@@ -54,3 +54,6 @@ dkms.confef
 #bin
 bin/
 obj/
+
+#output
+*.txt

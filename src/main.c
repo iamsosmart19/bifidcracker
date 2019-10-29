@@ -3,6 +3,8 @@
 #include "bifidcrack.h"
 #include "period.h"
 
+int onBifid = 0;
+
 int main(int argc, char* argv[]) {
 	if(argc <= 1) {
 		fprintf(stderr, "Error: No file provided\n");
@@ -22,10 +24,10 @@ int main(int argc, char* argv[]) {
 		}
 		if( check < 65 || check > 90 || check == 'J') {
 			if(check != '\n') {
-				fprintf(stderr, "Error: Invalid character %c: check that all characters are lowercase, there are no spaces, and no 'J's\n", check);
+				fprintf(stderr, "Error: Invalid character %c: check that all characters are uppercase, there are no spaces, and no 'J's\n", check);
 			}
 			else {
-				fprintf(stderr, "Error: Invalid character \\n: check that all characters are lowercase, there are no spaces, and no 'J's\n");
+				fprintf(stderr, "Error: Invalid character \\n: check that all characters are uppercase, there are no spaces, and no 'J's\n");
 			}
 			return 1;
 		}	   

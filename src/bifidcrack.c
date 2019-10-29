@@ -1,4 +1,5 @@
 #include "bifidcrack.h"
+#include "sigint.h"
 
 int bifidMain(FILE* ciphertext, int period) {
     char* cipher;
@@ -9,27 +10,31 @@ int bifidMain(FILE* ciphertext, int period) {
 	fgets(cipher, length, ciphertext);
 	//printf("%s\n", cipher);
     int len = strlen(cipher);  
-    char *out = malloc(sizeof(char)*(len+1));
+    out = malloc(sizeof(char)*(len+1));
     srand((unsigned)time(NULL)); // randomise the seed, so we get different results each time we run this program
 
-    printf("Running bifidcrack, this could take a few minutes...\n");
+    printf("Running bifidcrack, this could take a few minutes...\nPress ^C at any time to terminate and save.\n");
 
-    char key[] = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+	//char key[26];
+	strcpy(key, "ABCDEFGHIKLMNOPQRSTUVWXYZ");
     int i=0;
     double score,maxscore=-99e99;
     // run until user kills it
+	signal(SIGINT, sig_handler);
     while(1){
         i++;
         score = bifidCrack(cipher,len,key, period);
         if(score > maxscore){
             maxscore = score;
-            printf("best score so far: %f, on iteration %d\n",score,i);
+            printf("best score so far: %f, on iteration %d\n", score, i);
             printf("    Key: '%s'\n",key);
-            bifidDecipher(key, period, cipher,out, len);
+            bifidDecipher(key, period, cipher, out, len);
             printf("    plaintext: '%s'\n",out);
         }
     }
+	printf("%s\n", out);
     free(out);
+	free(cipher);
     return 0;
 }
 
